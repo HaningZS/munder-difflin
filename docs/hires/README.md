@@ -11,7 +11,7 @@ Static site: no build step, no framework, no trackers. `index.html` + `style.css
 ## Run it locally
 
 ```bash
-cd site
+cd docs/hires
 python3 -m http.server 8080
 # → http://localhost:8080
 ```
@@ -21,8 +21,11 @@ app's *Add agent → import hire…* button, review every field, then spawn.
 
 ## Deploy
 
-It's a static folder — GitHub Pages, Cloudflare Pages, Netlify, anything. For GitHub Pages:
-push, then Settings → Pages → deploy from branch, folder `/site`.
+It's a static folder — GitHub Pages, Cloudflare Pages, Netlify, anything. For a
+standalone deployment, use `docs/hires` as the publish directory. When deploying
+this repository from a branch with GitHub Pages, select `/docs`, then append
+`/hires/` to the Pages site root (the official deployment is
+<https://munderdiffl.in/hires/>).
 
 ## Add your hire
 
@@ -41,12 +44,12 @@ Maintainer flow for adding a curated hire:
 
 ## Model suggestions
 
-`models.json` is the source of truth for the model suggestions in The Hiring Desk
+`models.json` is the source of truth for the model suggestions in the Agent Gallery
 (a manifest may use *any* model string — suggestions never validate, they only help).
 When new models ship (e.g. `claude-fable-5`):
 
 ```bash
-cd site
+cd docs/hires
 python3 scripts/build-data.py --sync-models   # scrape upstream's config.ts + merge
 ```
 
@@ -66,5 +69,6 @@ auto-spawns — a human reviews the final command and clicks spawn.
 
 ## License
 
-MIT. Not affiliated with NBC's *The Office*, Dunder Mifflin, or (yet) the Munder Difflin
-project — the integration PR lives in [`../app-pr`](../app-pr).
+The gallery is part of Munder Difflin. Its source code follows the repository's
+[MIT license](../../LICENSE). *Munder Difflin* is an affectionate parody and is not
+affiliated with NBC's *The Office* or Dunder Mifflin.
